@@ -24,28 +24,6 @@ class UtilitiesService {
     return response;
   }
 
-  Future<http.Response> postWithJsonParams(String api, dynamic params) async {
-    String reqUrl = _apiEndPoint + api + '/';
-    print(reqUrl);
-    http.Response response;
-    if (await getToken('login') != null && await getToken('login') != '')
-      response = await http.post(
-        reqUrl,
-        body: params,
-        headers: {
-          HttpHeaders.authorizationHeader: "Bearer " + await getToken('login'),
-          "Content-Type": "application/json"
-        },
-      );
-    else
-      response = await http.post(
-        reqUrl,
-        body: params,
-        headers: {"Content-Type": "application/json",},
-      );
-    // errorHandle(response);
-    return response;
-  }
 
   ///get the blogs
   Future<http.Response> getWithParams(
